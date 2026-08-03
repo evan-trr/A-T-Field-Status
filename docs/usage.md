@@ -1,5 +1,7 @@
 # Usage
 
+This page shows the most common command-line examples for A.T. Field Status.
+
 ## Basic generation
 
 ```bash
@@ -20,3 +22,8 @@ atfield 75 \
 ```bash
 atfield 50 --no-glow
 ```
+
+## Related notes
+
+- The output is deterministic when the same seed is used.
+- The generator is suitable for GitHub READMEs, dashboards, and static assets.

@@ -1,6 +1,6 @@
 # Documentation
 
-This directory gathers the main documentation for A.T. Field Status.
+This directory contains the main documentation for A.T. Field Status.
 
 ## Quick start
 
@@ -11,5 +11,9 @@ atfield 42 -o progress.svg
 
 ## Contents
 
-- usage.md: CLI examples and customization tips
-- architecture.md: how the SVG generator is structured
+- [Usage](usage.md) - CLI examples and customization tips
+- [Architecture](architecture.md) - generator structure and rendering flow
+
+## Status
+
+The project is feature-complete for its current scope, so the documentation focuses on usage, structure, and maintenance rather than active design decisions.
