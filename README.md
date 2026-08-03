@@ -1,51 +1,118 @@
 <div align="center">
-  <img alt="A.T. Field Status" src="docs/atfield-banner.svg" width="500"/>
+  <img alt="A.T. Field Status Banner" src="assets/atfield-banner.svg" width="500"/>
 </div>
 
 <h1 align="center">A.T. Field Status</h1>
 
 <p align="center">
-  Générateur SVG de barre de progression hexagonale style <strong>A.T. Field</strong> (Evangelion).
+  Evangelion-inspired hexagonal SVG progress bar generator.
   <br/>
-  100 hexagones = 100 %, un par point de pourcentage.
+  <em>100 hexagons. 100 percent. One A.T. Field.</em>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.10+-blue?logo=python" alt="Python 3.10+"/>
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License"/>
+  <img src="https://img.shields.io/github/license/evan-trr/atfield-status" alt="License"/>
+  <img src="https://img.shields.io/github/stars/evan-trr/atfield-status" alt="Stars"/>
+  <img src="https://img.shields.io/github/issues/evan-trr/atfield-status" alt="Issues"/>
+  <img src="https://img.shields.io/badge/status-in%20development-orange" alt="Status"/>
+</p>
+
+<p align="center">
+  <a href="#-overview">Overview</a> •
+  <a href="#-features">Features</a> •
+  <a href="#-installation">Installation</a> •
+  <a href="#-usage">Usage</a> •
+  <a href="#-project-structure">Structure</a> •
+  <a href="#-license">License</a>
 </p>
 
 ---
 
-## Aperçu
+# 🎯 Overview
 
-```
-atfield 42 > progress.svg
-```
+A.T. Field Status is an open-source SVG generator inspired by the charging screen found on the Evangelion edition of the HiBy R4.
 
-L'SVG généré contient :
+The goal of this project is to create a highly customizable hexagonal progress indicator that can be embedded directly into GitHub repositories, websites, dashboards, or personal projects.
 
-- Une grille de **100 hexagones** disposés autour d'un hexagone central
-- Les premiers **X hexagones** sont **verts** (progress rempli)
-- Les **N suivants** pulsent en **orange** via CSS (en cours de charge)
-- Le reste reste **noir** (non chargé)
-- L'hexagone central affiche le **pourcentage** en police Orbitron
-- Effet **neon glow** optionnel
+Each generated image contains:
+
+- 100 hexagons representing 100%
+- Filled hexagons
+- Animated charging hexagons
+- Empty hexagons
+- A central percentage indicator
+- Optional neon effects
 
 ---
 
-## Installation
+# 📊 Progress
+
+<img alt="A.T. Field Progress Status" src="assets/progress.svg"/>
+
+Current phase: Initial development.
+
+---
+
+# ✨ Features
+
+- **SVG generation**
+- **Command-line interface**
+- **Animated charging effects**
+- **Orbitron font support**
+- **Customizable colors**
+- **Seed-based deterministic patterns**
+- **Neon glow effects**
+- **GitHub integration**
+
+---
+
+# 🗺️ Roadmap
+
+## Phase 1 — Core implementation
+
+- [x] Define the project architecture.
+- [x] Create the repository.
+- [x] Design the hexagonal layout.
+- [x] Implement SVG generation.
+- [x] Implement the command-line interface.
+
+---
+
+## Phase 2 — Animations
+
+- [x] Add charging animations.
+- [x] Implement glow effects.
+- [ ] Optimize rendering performance.
+
+---
+
+## Phase 3 — Packaging
+
+- [ ] Create the Python package.
+- [ ] Add automated tests.
+- [ ] Publish documentation.
+
+---
+
+# 🛠️ Installation
+
+## Clone the repository
 
 ```bash
-# Cloner le dépôt
-git clone https://github.com/votre-user/atfield-status.git
+git clone https://github.com/evan-trr/atfield-status.git
 cd atfield-status
+```
 
-# Créer l'environnement et installer
+## Create the virtual environment
+
+```bash
 make venv
 ```
 
-Ou avec pip :
+---
+
+## Install using pip
 
 ```bash
 pip install .
@@ -53,122 +120,156 @@ pip install .
 
 ---
 
-## Utilisation
+# 🚀 Usage
 
-### CLI
+## Generate an SVG
 
 ```bash
-# Générer un SVG à 42 % sur stdout
-atfield 42
-
-# Écrire dans un fichier
 atfield 42 -o progress.svg
+```
 
-# Personnaliser les couleurs
-atfield 75 --filled "#00ff88" --charging "#ff6600" --empty "#111111"
+---
 
-# Désactiver le glow
+## Customize the colors
+
+```bash
+atfield 75 \
+    --filled "#00ff88" \
+    --charging "#ff6600" \
+    --empty "#111111"
+```
+
+---
+
+## Disable the glow effect
+
+```bash
 atfield 50 --no-glow
+```
 
-# Ouvrir directement dans le navigateur (macOS)
+---
+
+## Open the file directly (macOS)
+
+```bash
 make open ARGS=50
 ```
 
-### Makefile
-
-| Commande       | Description                        |
-|----------------|------------------------------------|
-| `make venv`    | Crée le venv et installe le package |
-| `make test`    | Lance les tests                    |
-| `make run ARGS=42` | Génère un SVG sur stdout        |
-| `make open ARGS=50` | Génère et ouvre dans le navigateur |
-| `make clean`   | Supprime le venv et les caches     |
-
 ---
 
-## Options CLI
+# ⚙️ Command-line options
 
-```
-positional arguments:
-  progress              Pourcentage (0-100)
+```text
+progress                  Progress percentage (0-100)
 
-options:
-  -o, --output FILE     Fichier de sortie (stdout par défaut)
-  --count COUNT         Nombre d'hexagones (défaut: 100)
-  --radius RADIUS       Rayon des hexagones (défaut: 13)
-  --gap GAP             Espacement entre hexagones (défaut: 0.08)
-  --bg COLOR            Couleur de fond (défaut: #0a0a0f)
-  --filled COLOR        Hexagones remplis (défaut: #b5e050)
-  --charging COLOR      Hexagones en charge (défaut: #FF8C00)
-  --empty COLOR         Hexagones vides (défaut: #0c0c0a)
-  --stroke COLOR        Bordure hexagone central (défaut: #FF8C00)
-  --stroke-width WIDTH  Épaisseur bordure (défaut: 1.5)
-  --no-glow             Désactive l'effet neon
-  --seed SEED           Grain aléatoire pour le remplissage (défaut: 1)
+-o, --output FILE         Output file
+--count COUNT             Number of hexagons
+--radius RADIUS           Hexagon radius
+--gap GAP                 Hexagon spacing
+--bg COLOR                Background color
+--filled COLOR            Filled hexagons color
+--charging COLOR          Charging hexagons color
+--empty COLOR             Empty hexagons color
+--stroke COLOR            Central border color
+--stroke-width WIDTH      Border thickness
+--seed SEED               Random seed
+--no-glow                 Disable glow effect
 ```
 
 ---
 
-## Exemple
+# 📁 Project structure
 
-```bash
-atfield 50 -o charging.svg
-```
-
-Résultat : 50 hexagones verts, 15 qui pulsent en orange (bande de charge), 35 noirs. L'hexagone central affiche « 50% » en amber avec glow.
-
-<div align="center">
-  <img alt="Exemple SVG" src="docs/atfield-example.svg" width="480"/>
-</div>
-
----
-
-## Structure du projet
-
-```
+```text
 atfield-status/
-├── src/atfield/
-│   ├── __init__.py
-│   ├── cli.py         # Point d'entrée CLI (argparse)
-│   └── generator.py   # Générateur SVG (géométrie + CSS)
+│
+├── src/
+│   └── atfield/
+│       ├── __init__.py
+│       ├── cli.py
+│       └── generator.py
+│
 ├── tests/
 │   └── test_generator.py
-├── Makefile
+│
+├── docs/
+│   └── Nothing for now ...
+│
+├── assets/
+│   ├── atfield-banner.svg
+│   └── atfield-example.svg
+│
 ├── pyproject.toml
+├── Makefile
+├── LICENSE
 └── README.md
 ```
 
 ---
 
-## Comment ça marche
+# 🧠 How it works
 
-1. **Géométrie** – Une grille d'hexagones `flat-top` est générée autour d'un centre. Les hexagones trop proches du centre sont retirés (pour laisser place à l'hexagone central).
-2. **Placement organique** – Un bruit pseudo-aléatoire (`_noise_val`) détermine l'ordre de remplissage : chaque exécution avec la même `seed` produit le même motif.
-3. **États** – Les hexagones sont triés par bruit, puis divisés en trois groupes : `filled`, `charging`, `empty`.
-4. **CSS Animation** – Les hexagones `charging` reçoivent une animation `@keyframes charge` avec un délai progressif, créant une vague orange qui parcourt la bande de charge.
-5. **Police Orbitron** – La typographie est chargée via `@font-face` depuis Google Fonts (woff2), pour un rendu fidèle même en local (file://).
+1. A flat-top hexagonal grid is generated.
+
+2. The central area is removed.
+
+3. A deterministic pseudo-random function determines the fill order.
+
+4. Hexagons are divided into three states:
+   - Filled = the same as the %
+   - Charging = 10 or less hex
+   - Empty = the rest
+
+5. CSS animations are embedded directly into the SVG file.
+
+6. The final image is exported.
 
 ---
 
-## Personnalisation
+# 🎨 Customization
 
-Utilisez les flags CLI pour changer l'apparence :
+## Cyberpunk 2077 theme
 
 ```bash
-# Thème cyberpunk
 atfield 60 \
-  --filled "#00ffcc" \
-  --charging "#ff00ff" \
-  --empty "#0a001a" \
-  --stroke "#00ffcc" \
-  --no-glow
-
-# Petite grille pour badge
-atfield 85 --count 30 --radius 8 -o badge.svg
+    --filled "#53c1e5" \
+    --charging "#fee701" \
+    --empty "#0a001a"
 ```
 
 ---
 
-## Licence
+## Small badge
 
-MIT
+```bash
+atfield 85 --count 30 --radius 8
+```
+
+---
+
+# 📚 Documentation
+
+Additional documentation can be found inside the `docs` directory.
+
+---
+
+# 🙏 Acknowledgements
+
+- HiBy
+- Neon Genesis Evangelion
+- SVG specifications
+- Python community
+
+---
+
+# 📄 License
+
+MIT License.
+
+See the [LICENSE](LICENSE) file for additional information.
+
+---
+
+<p align="center">
+    Made by <strong>Akalice</strong>
+</p>
