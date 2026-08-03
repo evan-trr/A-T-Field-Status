@@ -48,7 +48,7 @@ Each generated image contains:
 
 # 📊 Progress
 
-<img alt="A.T. Field Progress Status" src="assets/progress.svg"/>
+<img alt="A.T. Field Progress Status" src="assets/progress.svg" width="500"/>
 
 Current phase: Initial development.
 
