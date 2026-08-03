@@ -8,4 +8,5 @@ build/
 venv/
 *.svg
 !docs/*.svg
+!assets/*.svg
 .DS_Store
