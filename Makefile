@@ -1,4 +1,4 @@
-.PHONY: test run open clean install venv
+.PHONY: test run open clean install venv progress-range
 
 venv:
 	python3 -m venv .venv
@@ -15,6 +15,12 @@ run:
 
 open:
 	.venv/bin/atfield $(ARGS) > /tmp/atfield.svg && open /tmp/atfield.svg
+
+progress-range:
+	mkdir -p assets/progress-range
+	for pct in $$(seq 0 100); do \
+		.venv/bin/python -m atfield.cli $$pct -o assets/progress-range/progress$$pct.svg; \
+	done
 
 clean:
 	rm -rf .venv __pycache__ .pytest_cache *.egg-info
