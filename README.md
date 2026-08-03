@@ -12,9 +12,9 @@
 
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.10+-blue?logo=python" alt="Python 3.10+"/>
-  <img src="https://img.shields.io/github/license/evan-trr/atfield-status" alt="License"/>
-  <img src="https://img.shields.io/github/stars/evan-trr/atfield-status" alt="Stars"/>
-  <img src="https://img.shields.io/github/issues/evan-trr/atfield-status" alt="Issues"/>
+  <img src="https://img.shields.io/github/license/evan-trr/A-T-Field-Status" alt="License"/>
+  <img src="https://img.shields.io/github/stars/evan-trr/A-T-Field-Status" alt="Stars"/>
+  <img src="https://img.shields.io/github/issues/evan-trr/A-T-Field-Status" alt="Issues"/>
   <img src="https://img.shields.io/badge/status-in%20development-orange" alt="Status"/>
 </p>
 
@@ -48,7 +48,9 @@ Each generated image contains:
 
 # 📊 Progress
 
-<img alt="A.T. Field Progress Status" src="assets/progress.svg" width="500"/>
+<div align="center">
+  <img alt="A.T. Field Progress Status" src="assets/progress.svg" width="600"/>
+</div>
 
 Current phase: Initial development.
 
