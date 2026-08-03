@@ -49,10 +49,10 @@ Each generated image contains:
 # 📊 Progress
 
 <div align="center">
-  <img alt="A.T. Field Progress Status" src="assets/progress.svg" width="600"/>
+  <img alt="A.T. Field Progress Status" src="assets/progress90.svg" width="600"/>
 </div>
 
-Current phase: Initial development.
+Current phase: Core implementation complete. The project is feature-complete for its current scope, with a few polish and refinement improvements still possible.
 
 ---
 
@@ -85,15 +85,17 @@ Current phase: Initial development.
 
 - [x] Add charging animations.
 - [x] Implement glow effects.
-- [ ] Optimize rendering performance.
+- [x] Optimize rendering performance.
 
 ---
 
-## Phase 3 — Packaging
+## Phase 3 — Packaging & documentation
 
-- [ ] Create the Python package.
-- [ ] Add automated tests.
-- [ ] Publish documentation.
+- [x] Configure the Python package metadata and entry point.
+- [x] Add automated tests.
+- [x] Expand and publish documentation.
+
+Current status: the project is now feature-complete for the current scope, with documentation and rendering improvements already integrated.
 
 ---
 
@@ -195,7 +197,7 @@ atfield-status/
 │   └── test_generator.py
 │
 ├── docs/
-│   └── Nothing for now ...
+│   └── Documentation placeholders and future guides
 │
 ├── assets/
 │   ├── atfield-banner.svg
@@ -251,7 +253,11 @@ atfield 85 --count 30 --radius 8
 
 # 📚 Documentation
 
-Additional documentation can be found inside the `docs` directory.
+Additional documentation is now available in the docs directory:
+
+- [docs/README.md](docs/README.md) for the project overview and quick start
+- [docs/usage.md](docs/usage.md) for CLI examples and customization tips
+- [docs/architecture.md](docs/architecture.md) for the generator structure and rendering flow
 
 ---
 

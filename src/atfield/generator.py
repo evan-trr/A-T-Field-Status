@@ -128,6 +128,20 @@ def _write_glow_filter(lines: list[str]):
     lines.append("  </defs>")
 
 
+def build_polygon_markup(points: str, fill: str, *, border: str | None = None,
+                         glow: bool = False, extra_attrs: str = "") -> str:
+    """Construit le markup d’un polygone SVG de manière réutilisable et compacte."""
+    attrs = [f'fill="{fill}"']
+    border_attr = border or 'stroke="rgba(0,0,0,0.35)" stroke-width="1"'
+    if border_attr:
+        attrs.append(border_attr)
+    if glow:
+        attrs.append('filter="url(#g)"')
+    if extra_attrs:
+        attrs.append(extra_attrs)
+    return f'  <polygon points="{points}" {" ".join(attrs)}/>'
+
+
 # ---------------------------------------------------------------------------
 # Hexagone central
 # ---------------------------------------------------------------------------
@@ -135,12 +149,11 @@ def _write_glow_filter(lines: list[str]):
 def _write_center_hex(big_cx: float, big_cy: float, big_r: float,
                       theme: Theme, lines: list[str], text: str):
     big_pts = hexagon_points(big_cx, big_cy, big_r)
-    lines.append(f"  <polygon points=\"{big_pts}\" fill=\"#000000\" "
-                 f"stroke=\"{theme.stroke}\" stroke-width=\"1.5\"/>")
+    border_attr = f'stroke="{theme.stroke}" stroke-width="1.5"'
+    lines.append(build_polygon_markup(big_pts, "#000000", border=border_attr))
     if theme.glow:
-        lines.append(f"  <polygon points=\"{big_pts}\" fill=\"#000000\" "
-                     f"stroke=\"{theme.stroke}\" stroke-width=\"1.5\" "
-                     f"filter=\"url(#g)\" opacity=\"0.5\"/>")
+        lines.append(build_polygon_markup(big_pts, "#000000", border=border_attr,
+                                          glow=True, extra_attrs='opacity="0.5"'))
 
     font_size = max(int(big_r * 0.5), 14)
     text_attrs = (f"x=\"{big_cx:.0f}\" y=\"{big_cy:.0f}\" "
@@ -239,28 +252,28 @@ def generate(cfg: GridConfig | None = None,
     if theme.glow:
         _write_glow_filter(lines)
 
-    border = ' stroke="rgba(0,0,0,0.35)" stroke-width="1"'
+    border = 'stroke="rgba(0,0,0,0.35)" stroke-width="1"'
     charge_idx = 0
+    filled_fill = theme.filled
+    empty_fill = theme.empty
+    glow_enabled = theme.glow
 
     for cx, cy, _, _, state in states:
         pts = hexagon_points(cx, cy, cfg.hex_radius)
 
         if state == "filled":
-            attr = f'fill="{theme.filled}"{border}'
-            if theme.glow:
-                attr += ' filter="url(#g)"'
-            lines.append(f'  <polygon points="{pts}" {attr}/>')
+            lines.append(build_polygon_markup(pts, filled_fill, border=border,
+                                              glow=glow_enabled))
 
         elif state == "charging":
             delay = (charge_idx / cfg.charge_band) * rate
-            lines.append(f'  <polygon points="{pts}" fill="{theme.empty}"{border} '
+            lines.append(f'  <polygon points="{pts}" fill="{empty_fill}" {border} '
                          f'style="animation: charge {rate}s ease-in-out '
                          f'infinite; animation-delay: {delay:.3f}s;"/>')
             charge_idx += 1
 
         else:
-            lines.append(f'  <polygon points="{pts}" '
-                         f'fill="{theme.empty}"{border}/>')
+            lines.append(build_polygon_markup(pts, empty_fill, border=border))
 
     _write_center_hex(big_cx, big_cy, cfg.center_radius,
                       theme, lines, f"{progress}%")

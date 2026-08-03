@@ -3,13 +3,28 @@ Tests pour le générateur d'SVG hexagonal A.T. Field.
 """
 import math
 
-from atfield.generator import DEFAULT_THEME, GridConfig, Theme, generate, hexagon_points
+from atfield.generator import (
+    DEFAULT_THEME,
+    GridConfig,
+    Theme,
+    build_polygon_markup,
+    generate,
+    hexagon_points,
+)
 
 
 def test_hexagon_points_returns_6_vertices():
     """Un hexagone doit avoir exactement 6 sommets."""
     pts = hexagon_points(0, 0, 10)
     assert len(pts.split(" ")) == 6
+
+
+def test_build_polygon_markup_includes_glow_and_border():
+    """Le markup d’un polygone doit inclure la bordure et le filtre de glow si demandé."""
+    markup = build_polygon_markup("0,0 10,0 10,10 0,10", "#123456", glow=True)
+    assert 'fill="#123456"' in markup
+    assert 'filter="url(#g)"' in markup
+    assert 'stroke="rgba(0,0,0,0.35)"' in markup
 
 
 def test_hexagon_first_point_is_at_0_degrees():
