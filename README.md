@@ -202,12 +202,6 @@ Additional documentation is available in the docs directory:
 
 ---
 
-## License
-
-A.T. Field Status is distributed under the MIT License. See [LICENSE](LICENSE) for details.
-
----
-
 ## Acknowledgements
 
 - HiBy
