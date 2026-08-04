@@ -208,7 +208,7 @@ A.T. Field Status is distributed under the MIT License. See [LICENSE](LICENSE) f
 
 ---
 
-# 🙏 Acknowledgements
+## Acknowledgements
 
 - HiBy
 - Neon Genesis Evangelion
@@ -217,7 +217,7 @@ A.T. Field Status is distributed under the MIT License. See [LICENSE](LICENSE) f
 
 ---
 
-# 📄 License
+## License
 
 MIT License.
 
